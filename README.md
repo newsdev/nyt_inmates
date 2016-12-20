@@ -125,18 +125,12 @@ SELECT race, COUNT(violations.id) as violations FROM violations
 INNER JOIN disciplines ON disciplines.incident\_id=violations.incident\_id
 GROUP BY 1
 
-|
-
 | Race | Inmates | Violations | Rate | Rate vs White |
 | --- | --- | --- | --- | --- |
 | B |  25,244 |  76,598 |  3.03 | 47% |
-| --- | --- | --- | --- | --- |
 | H |  11,765 |  33,113 |  2.81 | 37% |
-| --- | --- | --- | --- | --- |
 | O |  1,582 |  3,831 |  2.42 |   |
-| --- | --- | --- | --- | --- |
 | W |  12,739 |  26,217 |  2.06 |   |
-| --- | --- | --- | --- | --- |
 
 
  The disparity was even greater for tickets that resulted in solitary confinement:
@@ -311,4 +305,4 @@ ORDER BY 2,1
 | decision | NO | Whether the Parole Board voted to release the inmate |
 |   |   |   |
 
-For any questions or comments, contact me at rgebeloff@nytimes.com
+For any questions or comments, contact me at rgebeloff@nytimes.com or @gebeloffnyt on Twitter.
