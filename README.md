@@ -8,7 +8,7 @@ It's important to put the data analysis in the proper context. The Times investi
 
 It's also important to note, as the stories do, the limits of the data analysis. The underlying data, obtained from the state Department of Corrections via the Freedom of Information Law (FOIL), did not contain some important variables a researcher might want to know about the inmates, and cannot fully explain the reasons for the disparities in discipline and parole beyond showing the extent to which the disparities exist. It also made it difficult to conduct more advanced statistical measures, such as regression analysis.
 
-DISCIPLINE
+**DISCIPLINE**
 
 Our approach was to akin to calculating crime rates. We used disciplinary incident data for a single year as the numerator, and the prison population for the year as the denominator.
 
@@ -161,7 +161,9 @@ These queries are just examples of how we approached the data. Here is documenta
 
 
 
-FILES: disciplines.csv
+**FILES:**
+ 
+***disciplines.csv***
 
 This is a table of 59,394 disciplinary tickets for which a New York State prison inmate was punished in 2015. Each row is a distinct incident, and the incident\_id field joins to the violations table, which includes one or more specific infractions for which the inmate was punished. The file layout, a sample record and field descriptions are below:
 
@@ -188,7 +190,7 @@ This is a table of 59,394 disciplinary tickets for which a New York State prison
 
 
 
-Violations.csv
+***Violations.csv***
 
 This table lists one or more violations associated with every disciplinary ticket – it joins to the disciplines table via the incident\_id field. The original source data listed each violation horizontally across the disciplinary records. By reshaping the data, it is easier to focus on specific violations. In reshaping, the first violation listed was given a rule\_id of 1, the second, 2, and so on.  The Times analysis found in general that white inmates racked up fewer violations in general, and much fewer in certain categories.
 
@@ -206,7 +208,7 @@ This table lists one or more violations associated with every disciplinary ticke
 
 
 
-Inmates.csv
+***Inmates.csv***
 
 This table provides the denominator for rate calculations. It combines the rosters of all inmates in New York prisons on 5/31/2015 and January 1, 2016. Combined, this represents the average population for the system and for individual institutions for 2015. Because this file combines two different inmate rosters, users must divide any counts by 2 to get a proper count of any demographic group being queried.
 
@@ -229,7 +231,7 @@ This table provides the denominator for rate calculations. It combines the roste
 
 
 
-PAROLE
+**PAROLE**
 
 There are two primary differences in methodology for the analysis of decisions by the New York Board of Parole. For one, the source data was downloaded from the agency's Web site and not obtained via FOIL; and secondly, the initial analysis showed that the racial disparity in decisions did not persist for every group, but was concentrated in cases involving lower-level offenders.
 
@@ -289,7 +291,8 @@ ORDER BY 2,1
 
 
 
-FILE: paroles.csv
+**FILE:**
+***paroles.csv***
 
 | id | 1 | Primary key for the table |
 | --- | --- | --- |
