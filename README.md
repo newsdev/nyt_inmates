@@ -310,3 +310,5 @@ ORDER BY 2,1
 | official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense9CVO), which are mostly lower-severity  (3rd degree or lower) of violent crimes. |
 | decision | NO | Whether the Parole Board voted to release the inmate |
 |   |   |   |
+
+For any questions or comments, contact me at rgebeloff@nytimes.com
