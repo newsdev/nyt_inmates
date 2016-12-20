@@ -1,6 +1,6 @@
 **RACIAL DISPARITIES IN PRISON DISCIPLINE AND PAROLE**
 
-A New York Times investigation found minority inmates in New York State prisons are [punished for violating prison rules] (http://nyti.ms/2gYsvei) at inmates, a gap that is especially pronounced at certain prisons. The investigation also [found a racial disparity in parole decisions](http://nyti.ms/2gEbBVp) made by the New York Board of Parole particularly among burglars, thieves and other non-violent offenders.
+A New York Times investigation found minority inmates in New York State prisons are [punished for violating prison rules] (http://nyti.ms/2gYsvei) at a higher rate than white inmates, a gap that is especially pronounced at certain prisons. The investigation also [found a racial disparity in parole decisions](http://nyti.ms/2gEbBVp) made by the New York Board of Parole particularly among burglars, thieves and other non-violent offenders.
 
 For those interested in exploring the data used in the investigation, here is a detailed explanation of the methodology, along with relevant data files.
 
@@ -39,11 +39,8 @@ To best illustrate how our analysis worked, here are some query examples written
 One thing we observed is that the disparity in rates held for all age groups. To generate the numbers that show this, we can first query the overall inmate population, group by race and age group, and divide the count by 2 to average the two snapshots that comprise our inmate file:
 
 SELECT race,age\_group,COUNT(id)/2 as inmates FROM inmates
-
 GROUP BY 1,2
-
 ORDER BY 1,2
-
 
 
 | race | age\_group |  Inmates |
@@ -68,9 +65,7 @@ ORDER BY 1,2
 We then can run the same query on the discipline table to count tickets:
 
 SELECT race, age\_group, COUNT(id) as tickets FROM disciplines
-
 GROUP BY 1,2
-
 ORDER BY 1,2
 
 | crace | age\_group | tickets |
@@ -104,8 +99,6 @@ We can then combine the results of these two queries to generate rates:
 | 40+ |  5,791 |  3,231 |  0.56 |  9,963 |  6,577 |  0.66 | 18% |
 | TOTAL |  12,739 |  12,234 |  0.96 |  25,244 |  31,422 |  1.24 | 30% |
 
-
-
 This shows us that the discipline rate is higher for young people whether they are white or Black, but that the gap in rates persists for all age groups. It also shows us that the young inmate population skews Black (3,736/1,212 under 25 vs. 9,963/5,791 for 40+), which contributes to the overall disparity but does not explain it entirely.
 
 We can then run the same queries but limit the results to a specific facility, such as Clinton Correctional Facility, by adding "where nyt\_facility='Clinton'" to the where clause:
@@ -126,16 +119,11 @@ This shows a much higher level of ticketing disparity than the state as a whole,
 We found that the disparity in 2015 punishment seemed to grow with the severity of what we were measuring. Because minority inmates averaged more individual violations than whites each time a ticket was issued, the disparity for violations was greater than the disparity for tickets alone. To see this, let's count violations instead of tickets by joining the discipline and violation tables:
 
 SELECT race, COUNT(id)/2 AS inmates FROM inmates
-
 GROUP BY 1
 
 SELECT race, COUNT(violations.id) as violations FROM violations
-
 INNER JOIN disciplines ON disciplines.incident\_id=violations.incident\_id
-
 GROUP BY 1
-
-
 
 |
 
@@ -150,26 +138,17 @@ GROUP BY 1
 | W |  12,739 |  26,217 |  2.06 |   |
 | --- | --- | --- | --- | --- |
 
-  |   |   |   |
-| --- | --- | --- | --- |
-|   |   |   |   |
-|   |   |   |   |
-|   |   |   |   |
-|   |   |   |   |
 
  The disparity was even greater for tickets that resulted in solitary confinement:
 
 SELECT race, COUNT(id) AS shu\_tickets FROM disciplines
-
 WHERE current\_net\_shu>0
-
 GROUP BY 1
-
 ORDER BY 1
 
 
 
-| crace | Inmates | shu\_tickets | Rate | Rate vs White |
+| race | Inmates | shu\_tickets | Rate | Rate vs White |
 | --- | --- | --- | --- | --- |
 | B |  25,244 |  6,641 |  0.26 | 65% |
 | H |  11,765 |  3,074 |  0.26 | 64% |
@@ -197,8 +176,7 @@ This is a table of 59,394 disciplinary tickets for which a New York State prison
 | primary\_crime | MURDER 2ND | While inmates can be convicted of more than one crime, this is primary crime of conviction. |
 | crime\_class | A | New York felonies range from Class A -- the most severe -- to Class E, the least severe. Most crime types are usually placed into the same classification, but some can be bumped up to higher felony levels under certain circumstances. |
 | Severity | A1 | This summarizes the severity by incorporating multiple counts and crimes into a single string. For example,. A1B1 means the inmate is serving time for one count of a class A felony and one count of a class B crime ; C2D4+ means two counts of a class C felony, 4 or more counts of a class D felony |
-| official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense (CVO), which are mostly lower-severity  (3rd
- degree or lower) of violent crimes. |
+| official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense (CVO), which are mostly lower-severity  (3rd degree or lower) of violent crimes. |
 | incident\_date | 1/20/15 | Reported date of incident in prison |
 | incident\_time | 1520 | Reported time of incident |
 | incident\_facility | UPSTATE SHU | Facility name listed in state records -- this includes the name of the prison and whether the inmate was in a specific program within the prison. For example, some prisons have an annex, or a drug treatment program. |
@@ -245,8 +223,7 @@ This table provides the denominator for rate calculations. It combines the roste
 | primary\_crime | MURDER 2ND | While inmates can be convicted of more than one crime, this is the first listed in state records |
 | crime\_class | A | New York felonies range from Class A -- the most severe -- to Class E, the least severe. Most crime types are usually the same classification but some can be bumped up under certain circumstances. |
 | Severity | A1 | This summarizes the severity by incorporating multiple counts and crimes into a single string. For example,. A1B1 means the inmate is serving time for one count of a class A felony and one count of a class B crime ; C2D4+ means two counts of a class C felony, 4 or more counts of a class D felony |
-| official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense(CVO) , which are mostly lower-severity  (3rd
- degree or lower) of violent crimes. |
+| official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense(CVO) , which are mostly lower-severity  (3rd degree or lower) of violent crimes. |
 
 
 
@@ -270,16 +247,14 @@ When we later attached the state's official crime code table (see page 34, [http
 
 In the story, we use third-degree burglary as an example of this, but it also applies to inmates doing time for larceny and lower-level robbery charges. These inmates, by the way, comprise a significant share of the board's work. Due to changes in sentencing laws, a growing share of violent offenders are no-longer parole eligible, and if they are, they have to serve more years behind bars before reaching their initial hearing date.
 
-The Times had also requested from the state variables from the Compas system, an algorithm that synthesizes numerous characteristics about each inmate into a set of "risk" scores. These variables may have provided additional clarity, since they include such important factors as whether the inmate completed programming while incarcerated, the inmate's full criminal history and complete disciplinary record while behind bars. The state, citing inmate confidentiality, refused to release these variables.
+The Times had also requested from the state variables from the Compas system, an algorithm that synthesizes numerous characteristics about each inmate into a set of "risk" scores. These variables may have provided additional clarity, since they include such important factors as the inmate's full criminal history and complete disciplinary record while behind bars. The state, citing inmate confidentiality, refused to release these variables.
 
 Here are some examples of how we queried the data:
 
 To get the overall release rate by race:
 
 SELECT race, COUNT(id) AS hearings, SUM(IF(decision='yes',1,0)) AS releases,  SUM(IF(decision='yes',1,0))/ COUNT(id) AS release\_rate FROM paroles
-
 GROUP BY 1
-
 ORDER BY 1
 
 | race | hearings | releases | release\_rate |
@@ -292,9 +267,7 @@ ORDER BY 1
 One way to break this down is by offender type, which shows that most of the disparity occurs among lower-level property offenders:
 
 SELECT race, official\_crime\_type, COUNT(id) AS hearings, SUM(IF(decision='yes',1,0)) AS releases, SUM(IF(decision='yes',1,0))/ COUNT(id) AS release\_rate FROM paroles
-
 GROUP BY 1,2
-
 ORDER BY 2,1
 
 | race | official\_crime\_type | hearings | releases | release\_rate |
