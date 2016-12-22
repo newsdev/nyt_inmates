@@ -1,6 +1,6 @@
 **RACIAL DISPARITIES IN PRISON DISCIPLINE AND PAROLE**
 
-A New York Times investigation found minority inmates in New York State prisons are [punished for violating prison rules] (http://nyti.ms/2gYsvei) at a higher rate than white inmates, a gap that is especially pronounced at certain prisons. The investigation also [found a racial disparity in parole decisions](http://nyti.ms/2gEbBVp) made by the New York Board of Parole particularly among burglars, thieves and other non-violent offenders.
+A New York Times investigation found minority inmates in New York State prisons are [punished for violating prison rules] (http://nyti.ms/2gYsvei) at a higher rate than white inmates, a gap that is especially pronounced at certain prisons. The investigation also [found a racial disparity in parole decisions](http://nyti.ms/2gEbBVp) made by the New York Board of Parole particularly among burglars, thieves and other nonviolent offenders.
 
 For those interested in exploring the data used in the investigation, here is a detailed explanation of the methodology, along with relevant data files.
 
@@ -22,15 +22,15 @@ Each incident included a personal identifier for the inmate, which we have conve
 
 The disciplinary data contained no demographic characteristics for inmates. But using the personal identifier, The Times was able to attach a number of key variables by joining the disciplinary data to other databases we had obtained from the state. A key source of this was point-in-time prison "snapshots" that list all inmates currently incarcerated, along with demographic information about the inmate and the crime of imprisonment.
 
- We used two of these snapshots – one from the middle of 2015, one from the end – to create our population file, which we used as the denominator in our calculations.  While the demographic characteristics of the inmate population do not change much over the course of a single year, we used two different snapshots and averaged them to smooth out any possible anomalies.
+We used two of these snapshots – one from the middle of 2015, one from the end – to create our population file, which we used as the denominator in our calculations. While the demographic characteristics of the inmate population do not change much over the course of a single year, we used two different snapshots and averaged them to smooth out any possible anomalies.
 
-In our analysis, we collapsed the race and ethnicity of inmates into four categories – non-Hispanic White, non-Hispanic Black, Hispanic and Other. (Less than five percent of the inmate population is Asian, Native American or unclassified).
+In our analysis, we collapsed the race and ethnicity of inmates into four categories – non-Hispanic white, non-Hispanic black, Hispanic and other. (Less than five percent of the inmate population is Asian, Native American or unclassified).
 
-We also reshaped the incident file into a relational dataset. The state provided specific violations involved in each incident as columns in the primary table (violation 1, violation 2, etc), which made it difficult to look at the specific offenses for which inmates were being punished. So we converted this into a separate table of violations, where each of 139,759 specific infractions became its own row.
+We also reshaped the incident file into a relational dataset. The state provided specific violations involved in each incident as columns in the primary table (violation 1, violation 2, etc.), which made it difficult to look at the specific offenses for which inmates were being punished. So we converted this into a separate table of violations, where each of the 139,759 specific infractions became its own row.
 
-These tables -- the disciplinary tickets and the specific violations - in tandem provided us with raw counts of incidents that could be grouped by race, age, gender, offender type etc.
+These tables — the disciplinary tickets and the specific violations — in tandem provided us with raw counts of incidents that could be grouped by race, age, gender, offender type, etc.
 
-We paid particular attention to the type of offender, to see if, for example, people in prison for violent offenses were more likely to get punished in prison. We used three different measures. One being the severity of the crime considered the "primary offense" leading to the inmate's imprisonment; second was the overall severity, as measured in the number of total crimes committed and the combined severity of these crimes; and lastly, based on state standards, we placed offenders into three categories used in state reports based on their primary crime: Violent offenders, property criminals, and those considered to have committed "other coercive" offenses, which are mostly lower-levels of violent offenses.
+We paid particular attention to the type of offender, to see if, for example, people in prison for violent offenses were more likely to get punished in prison. We used three different measures. One being the severity of the crime considered the "primary offense" leading to the inmate's imprisonment; second was the overall severity, as measured in the number of total crimes committed and the combined severity of these crimes; and lastly, based on state standards, we placed offenders into three categories used in state reports based on their primary crime: violent offenders, property criminals and those considered to have committed "other coercive" offenses, which are mostly lower-levels of violent offenses.
 
 The snapshot data, provided in a file called "inmates" has all of the same demographic fields about inmates so it's easy to write queries to produce a denominator matching the numerator. Users should remember, though, that because the inmates file consists of two snapshots at different points of the year, they should always divide the results by 2 to get a proper population estimate.
 
@@ -99,7 +99,7 @@ We can then combine the results of these two queries to generate rates:
 | 40+ |  5,791 |  3,231 |  0.56 |  9,963 |  6,577 |  0.66 | 18% |
 | TOTAL |  12,739 |  12,234 |  0.96 |  25,244 |  31,422 |  1.24 | 30% |
 
-This shows us that the discipline rate is higher for young people whether they are white or Black, but that the gap in rates persists for all age groups. It also shows us that the young inmate population skews Black (3,736/1,212 under 25 vs. 9,963/5,791 for 40+), which contributes to the overall disparity but does not explain it entirely.
+This shows us that the discipline rate is higher for young people whether they are white or black, but that the gap in rates persists for all age groups. It also shows us that the young inmate population skews black (3,736/1,212 under 25 vs. 9,963/5,791 for 40+), which contributes to the overall disparity but does not explain it entirely.
 
 We can then run the same queries but limit the results to a specific facility, such as Clinton Correctional Facility, by adding "where nyt\_facility='Clinton'" to the where clause:
 
@@ -175,7 +175,7 @@ This is a table of 59,394 disciplinary tickets for which a New York State prison
 | official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense (CVO), which are mostly lower-severity  (3rd degree or lower) of violent crimes. |
 | incident\_date | 1/20/15 | Reported date of incident in prison |
 | incident\_time | 1520 | Reported time of incident |
-| incident\_facility | UPSTATE SHU | Facility name listed in state records -- this includes the name of the prison and whether the inmate was in a specific program within the prison. For example, some prisons have an annex, or a drug treatment program. |
+| incident\_facility | UPSTATE SHU | Facility name listed in state records — this includes the name of the prison and whether the inmate was in a specific program within the prison. For example, some prisons have an annex, or a drug treatment program. |
 | facility\_id | 46 | This is a New York Times ID for facilities |
 | nyt\_facility | Upstate | This is a New York Times standardized name for facilities |
 | program\_id | 121 | This ID is unique for specific programs within prisons |
@@ -210,16 +210,16 @@ This table provides the denominator for rate calculations. It combines the roste
 | --- | --- | --- |
 | nyt\_facility | Upstate | This is a New York Times standardized name for facilities |
 | facility\_id | 46 | This is a New York Times ID for facilities |
-| facility\_name | UPSTATE SHU | Facility name listed -- this includes the name of the prison and whether the inmate was in a specific program within the prison. |
+| facility\_name | UPSTATE SHU | Facility name listed — this includes the name of the prison and whether the inmate was in a specific program within the prison. |
 | program\_id | 121 | This ID is unique for specific programs within prisons |
 | Sex | M | M=Male, F=Female |
 | Age | 34 | The inmate's age at the time the snapshot (either the middle or end of 2015) |
 | age\_group | 30-39 | A convenience field for quick age grouping |
 | Race | B | W= non-Hispanic White; B= non-Hispanic Black; H=Hispanic; O=Other; |
 | primary\_crime | MURDER 2ND | While inmates can be convicted of more than one crime, this is the first listed in state records |
-| crime\_class | A | New York felonies range from Class A -- the most severe -- to Class E, the least severe. Most crime types are usually the same classification but some can be bumped up under certain circumstances. |
-| Severity | A1 | This summarizes the severity by incorporating multiple counts and crimes into a single string. For example,. A1B1 means the inmate is serving time for one count of a class A felony and one count of a class B crime ; C2D4+ means two counts of a class C felony, 4 or more counts of a class D felony |
-| official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense(CVO) , which are mostly lower-severity  (3rd degree or lower) of violent crimes. |
+| crime\_class | A | New York felonies range from Class A – the most severe — to Class E, the least severe. Most crime types are usually the same classification but some can be bumped up under certain circumstances. |
+| Severity | A1 | This summarizes the severity by incorporating multiple counts and crimes into a single string. For example, A1B1 means the inmate is serving time for one count of a class A felony and one count of a class B crime; C2D4+ means two counts of a class C felony, 4 or more counts of a class D felony |
+| official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense(CVO), which are mostly lower-severity (3rd degree or lower) of violent crimes. |
 
 
 
@@ -227,23 +227,23 @@ This table provides the denominator for rate calculations. It combines the roste
 
 **PAROLE**
 
-There are two primary differences in methodology for the analysis of decisions by the New York Board of Parole. For one, the source data was downloaded from the agency's Web site and not obtained via FOIL; and secondly, the initial analysis showed that the racial disparity in decisions did not persist for every group, but was concentrated in cases involving lower-level offenders.
+There are two primary differences in methodology for the analysis of decisions by the New York Board of Parole. For one, the source data was downloaded from the agency's website and not obtained via FOIL; and secondly, the initial analysis showed that the racial disparity in decisions did not persist for every group, but was concentrated in cases involving lower-level offenders.
 
-The board does not provide an easy-to-use download link for anybody that wants to study cases, so instead, the Times programmatically downloaded decisions from the board's [calendar](http://www.doccs.ny.gov/calendar.html). The analysis considered all cases posted from May of 2013 through May of 2016.
+The board does not provide an easy-to-use download link for anybody that wants to study cases, so instead, The Times programmatically downloaded decisions from the board's [calendar](http://www.doccs.ny.gov/calendar.html). The analysis considered all cases posted from May 2013 through May 2016.
 
-That data includes decisions for various hearing types, but the Times focused on the initial hearings parole-eligible inmates have upon completing their minimum sentence. For the bulk of inmates, this hearing represents the earliest possible release date, and success or failure here has a major impact on the amount of time the inmate ultimately serves.
+That data includes decisions for various hearing types, but The Times focused on the initial hearings that parole-eligible inmates have upon completing their minimum sentence. For the bulk of inmates, this hearing represents the earliest possible release date, and success or failure here has a major impact on the amount of time he ultimately serves.
 
 We further whittled down the dataset by eliminating cases where no decision was rendered – listed in the data as "or other" decisions. Often, the case is postponed because of missing paperwork or some other administrative snafu.
 
-This left us with cases where the interview type was listed as "initial" and the decision was actually rendered, listed as either "denied", "open date" – parole granted – or "paroled". We also decided to focus on male inmates. While there was also a racial disparity for women, the overall release rate was much higher, suggesting women have a totally different experience with the Board than men.
+This left us with cases where the interview type was listed as "initial" and the decision was actually rendered, listed as either "denied," "open date" (parole granted) or "paroled." We also decided to focus on male inmates. While there was also a racial disparity for women, the overall release rate was much higher, suggesting women have a totally different experience with the board than men.
 
-Within this core dataset, we at first observed that the disparity was particularly large for offenders who had been convicted of felonies that in New York State are classified as "C", "D" or "E"  -- less serious than "A" or "B" felonies, which are mostly comprised of violent crimes.
+Within this core dataset, we at first observed that the disparity was particularly large for offenders who had been convicted of felonies that in New York State are classified as "C", "D" or "E"  — less serious than "A" or "B" felonies, which are mostly comprised of violent crimes.
 
-When we later attached the state's official crime code table (see page 34, [http://www.doccs.ny.gov/Research/Reports/2016/Statistical\_Overview\_2015\_Discharges.pdf)](http://www.doccs.ny.gov/Research/Reports/2016/Statistical_Overview_2015_Discharges.pdf)), we gained the further insight that the board rarely paroled violent offenders of any race, but that there was a racial disparity among inmates who had committed property crimes.
+When we later attached the state's official crime code table (see page 34, [http://www.doccs.ny.gov/Research/Reports/2016/Statistical\_Overview\_2015\_Discharges.pdf)](http://www.doccs.ny.gov/Research/Reports/2016/Statistical_Overview_2015_Discharges.pdf)), we gained more insight that the board rarely paroled violent offenders of any race, but that there was a racial disparity among inmates who had committed property crimes.
 
-In the story, we use third-degree burglary as an example of this, but it also applies to inmates doing time for larceny and lower-level robbery charges. These inmates, by the way, comprise a significant share of the board's work. Due to changes in sentencing laws, a growing share of violent offenders are no-longer parole eligible, and if they are, they have to serve more years behind bars before reaching their initial hearing date.
+In the article, we use third-degree burglary as an example of this, but it also applies to inmates doing time for larceny and lower-level robbery charges. These inmates, by the way, comprise a significant share of the board's work. Because of changes in sentencing laws, a growing share of violent offenders are no longer parole eligible, and if they are, they have to serve more years behind bars before reaching their initial hearing date.
 
-The Times had also requested from the state variables from the Compas system, an algorithm that synthesizes numerous characteristics about each inmate into a set of "risk" scores. These variables may have provided additional clarity, since they include such important factors as the inmate's full criminal history and complete disciplinary record while behind bars. The state, citing inmate confidentiality, refused to release these variables.
+The Times had also requested from the state variables from the COMPAS system, an algorithm that synthesizes numerous characteristics about each inmate into a set of "risk" scores. These variables may have provided additional clarity, since they include such important factors as the inmate's full criminal history and complete disciplinary record while behind bars. The state, citing inmate confidentiality, refused to release these variables.
 
 Here are some examples of how we queried the data:
 
@@ -295,13 +295,13 @@ ORDER BY 2,1
 | race | H | W= white non-Hispanic, B= black non-Hispanic, H=Hispanic, O=Other |
 | dins | 2 | Number of  prison terms for this inmate for distinct crimes (does not include prison stints for parole violations) |
 | primary\_crime | ATT MURDER-2 | Primary crime listed on the parole calendar |
-| crime\_class | B | New York felonies range from Class A -- the most severe -- to Class E, the least severe. Most crime types are usually the same classification but some can be bumped up under certain circumstances. |
+| crime\_class | B | New York felonies range from Class A — the most severe — to Class E, the least severe. Most crime types are usually the same classification but some can be bumped up under certain circumstances. |
 | min\_years | 20 | Minimum sentence in years |
 | min\_months | 0 | Additional months of minimum sentence |
 | max\_years | 40 | Maximum sentence in years (99=Life) |
 | max\_months | 0 | Additional months of maximum sentence |
-| severity | B1B1D2 | This summarizes the severity by incorporating multiple counts and crimes into a single string. For example,. A1B1 means the inmate is serving time for one count of a class A felony and one count of a class B crime ; C2D4+ means two counts of a class C felony, 4 or more counts of a class D felony |
-| official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense9CVO), which are mostly lower-severity  (3rd degree or lower) of violent crimes. |
+| severity | B1B1D2 | This summarizes the severity by incorporating multiple counts and crimes into a single string. For example, A1B1 means the inmate is serving time for one count of a class A felony and one count of a class B crime; C2D4+ means two counts of a class C felony, 4 or more counts of a class D felony |
+| official\_crime\_type | VFO | This indicates whether the primary crime is, under state standards, a violent offense (VFO), a property offense (PDO), or an "other coercive" offense9 CVO), which are mostly lower severity  (3rd degree or lower) of violent crimes. |
 | decision | NO | Whether the Parole Board voted to release the inmate |
 |   |   |   |
 
